@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion Vers.androidCompileSdk
+    defaultConfig {
+        applicationId "cz.strnad.kotlinapp"
+        minSdkVersion Vers.androidMinSdk
+        targetSdkVersion Vers.androidTargetSdk
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin libs
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$Vers.kotlin"
+
+    // Support libs
+    implementation "com.android.support:appcompat-v7:$Vers.androidSupport"
+    implementation "com.android.support.constraint:constraint-layout:$Vers.androidSupportConstraint"
+
+    // Tests
+    testImplementation "junit:junit:$Vers.junit"
+    androidTestImplementation "com.android.support.test:runner:$Vers.androidSupportTest"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$Vers.androidEspresso"
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$Vers.androidArchLifecycle"
+
+    // Database by Room
+    implementation "android.arch.persistence.room:runtime:$Vers.androidArchPersistenceRoom"
+    implementation "android.arch.persistence.room:rxjava2:$Vers.androidArchPersistenceRoom"
+    kapt "android.arch.persistence.room:compiler:$Vers.androidArchPersistenceRoom"
+
+    // RXJava
+    implementation "io.reactivex.rxjava2:rxjava:$Vers.rxjava"
+    implementation "io.reactivex.rxjava2:rxandroid:$Vers.rxandroid"
+
+    // MVVM support
+    implementation project(path: ':mvvm')
+
+    // API connection
+    implementation "com.squareup.retrofit2:retrofit:$Vers.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$Vers.retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$Vers.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$Vers.okhttp"
+
+    // anko, android extensions for kotlin
+    implementation "org.jetbrains.anko:anko-commons:$Vers.anko"
+}

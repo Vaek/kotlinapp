@@ -1,0 +1,3 @@
+[submodule "deps.kt"]
+	path = deps.kt
+	url = https://github.com/Vaek/deps.kt.git
