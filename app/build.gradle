@@ -62,4 +62,5 @@ dependencies {
 
     // anko, android extensions for kotlin
     implementation "org.jetbrains.anko:anko-commons:$Vers.anko"
+    compile project(path: ':api')
 }

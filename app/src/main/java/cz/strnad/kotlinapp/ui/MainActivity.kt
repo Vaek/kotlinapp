@@ -23,5 +23,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.orders.data.observe(this, Observer { t -> t?.toString()?.let { toast(it) } })
         viewModel.orders.error.observe(this, Observer { t -> t?.getTranslation()?.let { toast(it) } })
         viewModel.loadOrder()
+        viewModel.loginUser("name", "pass")
+        viewModel.loadOrder()
     }
 }

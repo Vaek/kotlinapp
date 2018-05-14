@@ -12,7 +12,7 @@ import io.reactivex.Flowable
 interface OrderDao {
 
     @Query("SELECT * FROM ${OrderTable.TABLE_NAME} WHERE ${OrderTable.COL_USER_ID} = :userId")
-    fun getAll(userId: String): Flowable<Order>
+    fun getAll(userId: String): Flowable<List<Order>>
 
     @Insert(onConflict = REPLACE)
     fun insert(order: Order)

@@ -6,7 +6,7 @@ import cz.strnad.kotlinapp.R
 /**
  * Created by vaclavstrnad on 26/04/2018.
  */
-class DefaultTranslator(private val context: Context) : Translator {
+class DefaultTranslator(private val context: Context) : Translator<Error> {
 
     override fun translate(error: Error): String {
         return when (error.code) {
