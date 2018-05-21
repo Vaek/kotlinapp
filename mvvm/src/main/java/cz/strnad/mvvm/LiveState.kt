@@ -1,11 +1,11 @@
-package cz.strnad.kotlinapp.mvvm
+package cz.strnad.mvvm
 
 import android.arch.lifecycle.MutableLiveData
 
 /**
  * Created by vaclavstrnad on 14/05/2018.
  */
-class RepositoryCache<T, E> {
+open class LiveState<T, E> {
 
     val loading: MutableLiveData<Boolean> = MutableLiveData()
 

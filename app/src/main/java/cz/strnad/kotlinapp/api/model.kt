@@ -43,7 +43,7 @@ data class Category(@PrimaryKey @ColumnInfo(name = CategoryTable.COL_ID) var id:
     constructor() : this("", "", 0)
 }
 
-data class Error(var code: Int, var message: String) {
+open class Error(var code: Int, var message: String) {
 
     companion object {
         val UNKNOWN = Error(-1, "")
@@ -58,4 +58,14 @@ data class Error(var code: Int, var message: String) {
     fun getTranslation(): String? {
         return translator?.translate(this)
     }
+}
+
+data class LoginRequest(var username: String, var password: String) {
+
+    constructor() : this("", "")
+}
+
+data class LoginResponse(var user: User, var token: String) {
+
+    constructor() : this(User(), "")
 }
