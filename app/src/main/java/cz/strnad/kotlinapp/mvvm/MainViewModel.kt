@@ -11,10 +11,9 @@ import org.jetbrains.anko.defaultSharedPreferences
 class MainViewModel(application: Application, bundle: Bundle) : ApiViewModel(application, bundle) {
 
     private val orderRepository: OrderRepository = OrderRepository(api, KotlinAppDatabase.getInstance(application))
-    private val userRepository: UserRepository = UserRepository(api, KotlinAppDatabase.getInstance(application), application.defaultSharedPreferences)
+    private val userRepository: UserRepository = UserRepository(api, application.defaultSharedPreferences)
 
     val orders = SingleLiveState<List<Order>, Error>();
-
 
     init {
         // load data from bundle

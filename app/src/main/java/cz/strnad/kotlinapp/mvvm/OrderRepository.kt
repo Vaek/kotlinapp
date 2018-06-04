@@ -13,7 +13,7 @@ import io.reactivex.schedulers.Schedulers
  * Created by vaclavstrnad on 24/04/2018.
  */
 class OrderRepository(api: ApiService,
-                      database: KotlinAppDatabase) : OfflineApiRepository<List<Order>>(api, database) {
+                      database: KotlinAppDatabase) : OfflineApiRepository(api, database) {
 
     internal fun getOrders(user: User?): Single<List<Order>> {
         return database.orderDao().getAll(user?.id ?: "")
