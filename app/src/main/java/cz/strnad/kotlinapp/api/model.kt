@@ -27,12 +27,12 @@ data class Product(@PrimaryKey @ColumnInfo(name = ProductTable.COL_ID) var id: S
 }
 
 @Entity(tableName = OrderTable.TABLE_NAME)
-data class Order(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = OrderTable.COL_ID) var id: String,
+data class Order(@PrimaryKey(autoGenerate = true) @ColumnInfo(name = OrderTable.COL_ID) var id: Long,
                  @ColumnInfo(name = OrderTable.COL_USER_ID) var userId: String,
                  @ColumnInfo(name = OrderTable.COL_PRODUCT_ID) var productId: Long,
                  @ColumnInfo(name = OrderTable.COL_COUNT) var count: Double) {
 
-    constructor() : this("", "", 0, 0.0)
+    constructor() : this(0, "", 0, 0.0)
 }
 
 @Entity(tableName = CategoryTable.TABLE_NAME)

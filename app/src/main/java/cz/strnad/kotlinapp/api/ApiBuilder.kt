@@ -10,7 +10,8 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 class ApiBuilder(apiUrl: String,
                  logLevel: HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.NONE,
-                 modifyHttpClient: (OkHttpClient.Builder) -> Any = {}) {
+                 modifyHttpClient: (OkHttpClient.Builder) -> Any = {},
+                 modifyRetrofit: (Retrofit.Builder) -> Any = {}) {
 
     private val retrofit: Retrofit
 
@@ -29,6 +30,7 @@ class ApiBuilder(apiUrl: String,
                 .baseUrl(apiUrl)
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
+                .also { modifyRetrofit(it) }
                 .build()
     }
 
