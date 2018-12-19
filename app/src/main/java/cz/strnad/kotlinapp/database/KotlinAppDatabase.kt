@@ -9,7 +9,8 @@ import cz.strnad.kotlinapp.api.Category
 import cz.strnad.kotlinapp.api.Order
 import cz.strnad.kotlinapp.api.Product
 
-@Database(entities = arrayOf(Category::class, Product::class, Order::class), version = 1)
+@Database(entities = arrayOf(Category::class, Product::class, Order::class),
+        version = 1)
 @TypeConverters(Converters::class)
 abstract class KotlinAppDatabase : RoomDatabase() {
 
@@ -23,8 +24,10 @@ abstract class KotlinAppDatabase : RoomDatabase() {
         fun getInstance(context: Context): KotlinAppDatabase {
             if (INSTANCE == null) {
                 synchronized(KotlinAppDatabase::class) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            KotlinAppDatabase::class.java, "kotlinapp.db")
+                    INSTANCE = INSTANCE ?: Room.databaseBuilder(
+                            context.applicationContext,
+                            KotlinAppDatabase::class.java,
+                            "kotlinapp.db")
                             .build()
                 }
             }

@@ -12,6 +12,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -26,20 +27,10 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Kotlin libs
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$Vers.kotlin"
-
-    // Support libs
     implementation "com.android.support:appcompat-v7:$Vers.androidSupport"
 
     // Tests
     testImplementation "junit:junit:$Vers.junit"
     androidTestImplementation "com.android.support.test:runner:$Vers.androidSupportTest"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$Vers.androidEspresso"
-
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$Vers.androidArchLifecycle"
-}
-repositories {
-    mavenCentral()
 }

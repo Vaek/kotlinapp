@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion Vers.androidCompileSdk
 
     defaultConfig {
@@ -21,6 +21,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
 }
 
 dependencies {
@@ -37,8 +42,8 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$Vers.androidSupportTest"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$Vers.androidEspresso"
 
-    // ViewModel and LiveData
-    implementation "android.arch.lifecycle:extensions:$Vers.androidArchLifecycle"
+    // syncable database
+    implementation 'org.mongodb:stitch-android-sdk:4.1.0'
 }
 repositories {
     mavenCentral()

@@ -12,7 +12,7 @@ import retrofit2.Converter
 open class ApiViewModel(application: Application, bundle: Bundle) : BaseViewModel(application, bundle) {
 
     companion object {
-        private val builder = ApiBuilder("")
+        private val builder = ApiBuilder("http://example.mock.apiblueprint.cz")
         val api = builder.build { it.create(ApiService::class.java) }
         val errorConverter: Converter<ResponseBody, Error> = builder.build {
             it.responseBodyConverter(Error::class.java, arrayOfNulls<Annotation>(0))

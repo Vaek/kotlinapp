@@ -7,7 +7,9 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion Vers.androidCompileSdk
+
     defaultConfig {
         applicationId "cz.strnad.kotlinapp"
         minSdkVersion Vers.androidMinSdk
@@ -16,6 +18,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,7 +31,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Kotlin libs
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$Vers.kotlin"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$Vers.kotlin"
 
     // Support libs
     implementation "com.android.support:appcompat-v7:$Vers.androidSupport"
@@ -58,6 +61,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$Vers.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$Vers.retrofit"
     implementation "com.squareup.retrofit2:converter-scalars:$Vers.retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$Vers.retrofit"
     implementation "com.squareup.okhttp3:logging-interceptor:$Vers.okhttp"
 
     // anko, android extensions for kotlin

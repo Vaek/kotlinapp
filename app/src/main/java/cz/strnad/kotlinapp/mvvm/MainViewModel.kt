@@ -13,15 +13,20 @@ class MainViewModel(application: Application, bundle: Bundle) : ApiViewModel(app
     private val orderRepository: OrderRepository = OrderRepository(api, KotlinAppDatabase.getInstance(application))
     private val userRepository: UserRepository = UserRepository(api, application.defaultSharedPreferences)
 
-    val orders = SingleLiveState<List<Order>, Error>();
+    val orders = SingleLiveState<List<Order>, Error>()
 
     init {
         // load data from bundle
         orders.errorProcessor = CustomErrorProcessor(errorConverter, DefaultTranslator(application))
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        orders.dispose()
+    }
+
     fun loadOrder() {
-        orders.observe(orderRepository.getOrders(UserRepository.state.data.value))
+        orders.subscribe(orderRepository.getOrders(UserRepository.state.data.value))
     }
 
     fun loginUser(username: String, password: String) {

@@ -8,13 +8,16 @@ import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
-class CustomErrorProcessor(private val errorConverter: Converter<ResponseBody, Error>, private val translat: Translator<Error>) : SingleLiveState.ErrorProcessor<Error> {
+class CustomErrorProcessor(private val errorConverter: Converter<ResponseBody, Error>,
+                           private val translator: Translator<Error>) : SingleLiveState.ErrorProcessor<Error> {
 
     override fun process(e: Throwable): Error {
         if (e is HttpException) {
-            return e.response().errorBody()
-                    .let { errorConverter.convert(it) }
-                    .apply { this.translator = translat }
+            return e.response()
+                    .errorBody()
+                    ?.let { errorConverter.convert(it) }
+                    ?.also { it.translator = translator }
+                    ?: Error.UNKNOWN
         } else if (e is SocketTimeoutException) {
             return Error.TIMEOUT
         } else if (e is IOException) {

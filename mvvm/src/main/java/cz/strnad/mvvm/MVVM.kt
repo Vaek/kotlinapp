@@ -21,7 +21,7 @@ object MVVM {
                     try {
                         var clazzVM = annotation.value.java
                         if (clazzVM == BaseViewModel::class.java) {
-                            clazzVM = declaredFields[i].declaringClass as Class<out BaseViewModel>
+                            clazzVM = declaredFields[i].type as Class<out BaseViewModel>
                         }
                         declaredFields[i].set(target, viewModelProvider.get(clazzVM))
                     } catch (e: IllegalAccessException) {
